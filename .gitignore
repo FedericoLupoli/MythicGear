@@ -4,3 +4,4 @@ out/
 *.iml
 .idea/
 ObsidianDragon-RP.zip
+.deployrc

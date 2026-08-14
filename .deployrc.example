@@ -1,0 +1,16 @@
+# Esempio di configurazione per deploy.sh
+# Copia questo file in ".deployrc" e modifica i valori secondo le tue esigenze.
+# Le variabili impostate qui possono essere sovrascritte da variabili
+# d'ambiente o dal primo argomento dello script (es: ./deploy.sh /percorso/server).
+
+# Cartella del server (default: $HOME/Scrivania/server)
+SERVER_DIR="$HOME/Scrivania/server"
+
+# Porta dell'HTTP server che serve il resource pack (default: 8010)
+RP_PORT=8010
+
+# Host annunciato nell'URL del resource pack (default: auto-detect IP LAN)
+# RP_HOST=192.168.1.40
+
+# URL completo del resource pack (default: http://<host>:<port>/ObsidianDragon-RP.zip)
+# RP_URL=http://192.168.1.40:8010/ObsidianDragon-RP.zip

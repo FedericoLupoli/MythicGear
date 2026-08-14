@@ -120,7 +120,7 @@ La cartella `resourcepack/` contiene il modello `equipment` che unisce armatura 
 
 ```bash
 ./gradlew build          # compila il plugin
-./deploy.sh              # build + deploy in Scrivania/server + resource pack automatico
+./deploy.sh              # build + deploy + resource pack automatico
 ```
 
 `deploy.sh`:
@@ -128,6 +128,16 @@ La cartella `resourcepack/` contiene il modello `equipment` che unisce armatura 
 2. sincronizza `items.yml`/`sets.yml`;
 3. rigenera `ObsidianDragon-RP.zip`;
 4. avvia un HTTP server e aggiorna `server.properties` con URL e sha1.
+
+La cartella server è configurabile: default `$HOME/Scrivania/server`, ma puoi
+sovrascriverla con il primo argomento, una variabile d'ambiente o un file
+`.deployrc` (vedi `.deployrc.example`):
+
+```bash
+./deploy.sh /percorso/al/server        # come argomento
+SERVER_DIR=/percorso/al/server ./deploy.sh
+RP_PORT=9000 ./deploy.sh               # porta HTTP diversa
+```
 
 ## Changelog
 
