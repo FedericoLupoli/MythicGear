@@ -1,0 +1,115 @@
+dragon_helmet:
+  material: NETHERITE_HELMET
+  name: "<red>Elmo del Drago d'Ossidiana"
+  lore:
+    - "<gray>Set <red>Drago d'Ossidiana"
+    - "<gray>Full set: <red>doppia vita"
+  set: dragon
+  piece: helmet
+  glider: false
+  enchants:
+    protection: 10
+    unbreaking: 5
+    respiration: 3
+    aqua_affinity: 1
+  attributes:
+    armor:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: HEAD
+    armor_toughness:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: HEAD
+    knockback_resistance:
+      amount: 0.1
+      operation: ADD_NUMBER
+      slot: HEAD
+
+dragon_chestplate:
+  material: NETHERITE_CHESTPLATE
+  name: "<red>Pettorale del Drago d'Ossidiana"
+  lore:
+    - "<gray>Set <red>Drago d'Ossidiana"
+    - "<gray>Include l'<aqua>elytra"
+  set: dragon
+  piece: chestplate
+  glider: true
+  equippable:
+    slot: CHEST
+    model: mythicgear:dragon_chestplate
+    sound: minecraft:item.armor.equip_elytra
+  enchants:
+    fire_protection: 6
+    unbreaking: 5
+  attributes:
+    armor:
+      amount: 8
+      operation: ADD_NUMBER
+      slot: CHEST
+    armor_toughness:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: CHEST
+    knockback_resistance:
+      amount: 0.1
+      operation: ADD_NUMBER
+      slot: CHEST
+
+dragon_leggings:
+  material: NETHERITE_LEGGINGS
+  name: "<red>Gambiere del Drago d'Ossidiana"
+  lore:
+    - "<gray>Set <red>Drago d'Ossidiana"
+    - "<gray>Full set: <red>doppia vita"
+  set: dragon
+  piece: leggings
+  glider: false
+  enchants:
+    protection: 10
+    unbreaking: 5
+  attributes:
+    armor:
+      amount: 6
+      operation: ADD_NUMBER
+      slot: LEGS
+    armor_toughness:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: LEGS
+    knockback_resistance:
+      amount: 0.1
+      operation: ADD_NUMBER
+      slot: LEGS
+
+dragon_boots:
+  material: NETHERITE_BOOTS
+  name: "<red>Stivali del Drago d'Ossidiana"
+  lore:
+    - "<gray>Set <red>Drago d'Ossidiana"
+    - "<gray>Full set: <red>doppia vita"
+  set: dragon
+  piece: boots
+  glider: false
+  enchants:
+    protection: 10
+    unbreaking: 5
+    feather_falling: 10
+    depth_strider: 5
+  attributes:
+    armor:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: FEET
+    armor_toughness:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: FEET
+    knockback_resistance:
+      amount: 0.1
+      operation: ADD_NUMBER
+      slot: FEET
+    movement_speed:
+      amount: 0.05
+      operation: ADD_SCALAR
+      slot: FEET

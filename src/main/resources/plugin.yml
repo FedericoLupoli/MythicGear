@@ -1,0 +1,16 @@
+name: MythicGear
+version: 1.0.0
+main: dev.federicolupoli.mythicgear.MythicGear
+description: Custom armor and weapons for a semi-vanilla experience
+author: federico
+api-version: '26.2'
+commands:
+  mythicgear:
+    description: Main MythicGear command
+    usage: /mythicgear <give|list>
+    aliases: [mg]
+    permission: mythicgear.admin
+permissions:
+  mythicgear.admin:
+    description: Manage MythicGear items
+    default: op

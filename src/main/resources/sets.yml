@@ -1,0 +1,8 @@
+dragon:
+  name: "Drago d'Ossidiana"
+  pieces:
+    - dragon_helmet
+    - dragon_chestplate
+    - dragon_leggings
+    - dragon_boots
+  max_health_bonus: 20
