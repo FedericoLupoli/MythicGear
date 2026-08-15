@@ -1,104 +1,84 @@
 # MythicGear
 
-Plugin Paper per Minecraft che aggiunge un set di equipaggiamento custom con effetti da set completo. Progettato per un'esperienza semi-vanilla.
+[![Release](https://img.shields.io/github/v/release/FedericoLupoli/MythicGear)](https://github.com/FedericoLupoli/MythicGear/releases)
 
-**Set attuale: Drago d'Ossidiana** — armature in netherite con un pettorale che combina armatura ed elytra.
+**MythicGear** is a [Paper](https://papermc.io) plugin that brings powerful, fully-custom equipment sets to your Minecraft server. It is built around the **Obsidian Dragon** set: netherite armor with an armor + elytra hybrid chestplate, a signature weapon, and full-set bonuses — all configurable.
 
-## Funzionalità
+## Features
 
-- **Set "Drago d'Ossidiana"** (4 pezzi: elmo, pettorale, gambiere, stivali)
-- **Bonus full set**: vita raddoppiata (+20 max health)
-- **Pettorale ibrido armatura + elytra**: indossandolo si plana (glider) e si vede sia l'armatura netherite sia l'elytra grazie a un modello `equipment` custom
-- **Statistiche esplicite per pezzo**: armor, armor_toughness, knockback_resistance, movement_speed
-- **Incantesimi personalizzati** per ogni pezzo
-- **Ricette di crafting** per i pezzi del set
-- **Anti-exploit**: gli item non possono essere rinominati o riparati in incudine/grindstone
-- **Resource pack** incluso per il modello custom, caricato automaticamente dal server
+- **Obsidian Dragon set** — 4 netherite armor pieces plus the Obsidian Dragon Sword, each with custom stats, enchantments and lore.
+- **Armor + elytra hybrid** — the chestplate doubles as an elytra (glider) and renders *both* the netherite armor and the wings, thanks to a custom equipment model.
+- **Full-set bonus** — wearing the complete armor set grants **+20 max health** (double life).
+- **Dragon Breath ability** — right-click the Obsidian Dragon Sword to launch a dragon fireball that leaves a lingering cloud of dragon breath on impact.
+- **Dragon Breath immunity** — players wearing any piece of the set are immune to dragon breath, both from the sword and from the Ender Dragon.
+- **Explicit per-piece attributes** — armor, armor toughness, knockback resistance and movement speed, fully declared in `items.yml`.
+- **Crafting recipes** for the armor pieces.
+- **Anti-exploit** — MythicGear items cannot be renamed or repaired in anvils/grindstones.
+- **Built-in resource pack** — custom equipment model, automatically served by the server.
 
-## Requisiti
+## Requirements
 
-- **Paper 26.2** (o compatibile)
-- Java 21+
+- **Paper 26.2** or compatible
+- **Java 21+**
 
-## Installazione
+## Installation
 
-1. Copia `MythicGear.jar` nella cartella `plugins/` del server.
-2. (Consigliato) Posiziona `ObsidianDragon-RP.zip` nella cartella del server e configura il caricamento automatico del resource pack (vedi sotto).
-3. Riavvia il server.
+1. Download the latest `MythicGear.jar` from the [Releases](https://github.com/FedericoLupoli/MythicGear/releases) page.
+2. Place it in your server's `plugins/` folder.
+3. (Recommended) Install the resource pack — see [Resource pack](#resource-pack).
+4. Restart the server.
 
-### Resource pack automatico
+### Resource pack
 
-Il server può inviare il resource pack automaticamente ai giocatori. In `server.properties`:
-
-```
-resource-pack=http://<indirizzo>:8010/ObsidianDragon-RP.zip
-resource-pack-sha1=<sha1-del-file>
-```
-
-Per forzare il caricamento senza dialoghi:
+The custom equipment model ships as a resource pack (`ObsidianDragon-RP.zip`, available on the Releases page). The server can push it to clients automatically via `server.properties`:
 
 ```
-require-resource-pack=true
+resource-pack=http://<host>:8010/ObsidianDragon-RP.zip
+resource-pack-sha1=<sha1-of-the-file>
 ```
 
-In alternativa, i giocatori possono installare `ObsidianDragon-RP.zip` manualmente nei loro pacchetti di risorse.
+Set `require-resource-pack=true` to force the pack, or have players install the zip manually under their resource pack folder.
 
-## Comandi
+## Commands
 
-| Comando | Descrizione | Permesso |
-|---|---|---|
-| `/mythicgear give <item> [giocatore]` | Dà un item del set | `mythicgear.admin` |
-| `/mythicgear list` | Elenca gli item disponibili | `mythicgear.admin` |
+| Command | Description |
+|---|---|
+| `/mythicgear give <item> [player]` | Give a single item |
+| `/mythicgear giveset <set> [player]` | Give a whole set (all its pieces) |
+| `/mythicgear list` | List all items, grouped by set |
+| `/mythicgear reload` | Reload items, sets, effects and recipes |
 
-Alias: `/mg`
+Alias: `/mg`. All commands require the `mythicgear.admin` permission (default: OP).
 
-Permesso: `mythicgear.admin` (default: op)
+## Configuration
 
-## Configurazione
+All items and sets are defined in the plugin's data folder (`plugins/MythicGear/`):
 
-### `items.yml`
-
-Definisce gli item del set. Esempio:
+- `items.yml` — item definitions (material, name, lore, enchantments, attributes, equipment slot, glider...).
+- `sets.yml` — set composition and bonuses.
 
 ```yaml
-dragon_leggings:
-  material: NETHERITE_LEGGINGS
-  name: "<red>Gambiere del Drago d'Ossidiana"
+# items.yml
+dragon_sword:
+  material: NETHERITE_SWORD
+  name: "<red>Spada del Drago d'Ossidiana"
   lore:
     - "<gray>Set <red>Drago d'Ossidiana"
-    - "<gray>Full set: <red>doppia vita"
+    - "<gray>Click destro: <aqua>soffio di drago"
   set: dragon
-  piece: leggings
-  glider: false
+  piece: sword
   enchants:
-    protection: 10
+    sharpness: 10
+    fire_aspect: 2
     unbreaking: 5
+    mending: 1
   attributes:
-    armor:
-      amount: 6
+    attack_damage:
+      amount: 4
       operation: ADD_NUMBER
-      slot: LEGS
-    armor_toughness:
-      amount: 3
-      operation: ADD_NUMBER
-      slot: LEGS
-    knockback_resistance:
-      amount: 0.1
-      operation: ADD_NUMBER
-      slot: LEGS
-  equippable:
-    slot: CHEST
-    model: mythicgear:dragon_chestplate
-    sound: minecraft:item.armor.equip_elytra
-```
+      slot: MAINHAND
 
-> Nota: gli attributi base (armor, armor_toughness, knockback_resistance) vanno dichiarati esplicitamente: in Paper 26.2 i modifier aggiunti via API sovrascrivono quelli di default del materiale.
-
-### `sets.yml`
-
-Definisce i set e i relativi bonus:
-
-```yaml
+# sets.yml
 dragon:
   name: "Drago d'Ossidiana"
   pieces:
@@ -109,40 +89,35 @@ dragon:
   max_health_bonus: 20
 ```
 
-## Modello custom (resource pack)
+> **Note for Paper 26.2:** attribute modifiers added through the API *replace* the material's default modifiers. Always declare the base stats (`armor`, `armor_toughness`, `knockback_resistance`) explicitly for every piece.
 
-La cartella `resourcepack/` contiene il modello `equipment` che unisce armatura netherite ed elytra:
+> **Note:** equipment slot groups use the names `MAINHAND` / `OFFHAND` (no underscore) in Paper 26.2. `MAIN_HAND` is also accepted and normalized automatically.
 
-- `assets/mythicgear/equipment/dragon_chestplate.json` — layer `humanoid` (armatura netherite) + layer `wings` (elytra)
-- Le texture sono quelle vanilla (nessun file PNG extra)
-
-## Sviluppo
+## Building from source
 
 ```bash
-./gradlew build          # compila il plugin
-./deploy.sh              # build + deploy + resource pack automatico
+git clone https://github.com/FedericoLupoli/MythicGear.git
+cd MythicGear/
+./gradlew build
 ```
 
-`deploy.sh`:
-1. compila il plugin e lo copia in `plugins/`;
-2. sincronizza `items.yml`/`sets.yml`;
-3. rigenera `ObsidianDragon-RP.zip`;
-4. avvia un HTTP server e aggiorna `server.properties` con URL e sha1.
+The plugin jar is generated in `build/libs/`.
 
-La cartella server è configurabile: default `$HOME/Scrivania/server`, ma puoi
-sovrascriverla con il primo argomento, una variabile d'ambiente o un file
-`.deployrc` (vedi `.deployrc.example`):
+`deploy.sh` automates build, deploy and resource pack serving:
 
 ```bash
-./deploy.sh /percorso/al/server        # come argomento
-SERVER_DIR=/percorso/al/server ./deploy.sh
-RP_PORT=9000 ./deploy.sh               # porta HTTP diversa
+./deploy.sh                      # default server dir ($HOME/Scrivania/server)
+./deploy.sh /path/to/server      # explicit server dir
+SERVER_DIR=/path/to/server ./deploy.sh
+RP_PORT=9000 ./deploy.sh         # different HTTP port
 ```
+
+See `.deployrc.example` for all available options.
 
 ## Changelog
 
-Vedi [changelog.md](changelog.md).
+See [changelog.md](changelog.md).
 
-## Licenza
+## License
 
-Tutti i diritti riservati.
+All rights reserved.
