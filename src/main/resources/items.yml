@@ -82,6 +82,26 @@ dragon_leggings:
       operation: ADD_NUMBER
       slot: LEGS
 
+dragon_sword:
+  material: NETHERITE_SWORD
+  name: "<red>Spada del Drago d'Ossidiana"
+  lore:
+    - "<gray>Set <red>Drago d'Ossidiana"
+    - "<gray>Click destro: <aqua>soffio di drago"
+  set: dragon
+  piece: sword
+  glider: false
+  enchants:
+    sharpness: 10
+    fire_aspect: 2
+    unbreaking: 5
+    mending: 1
+  attributes:
+    attack_damage:
+      amount: 4
+      operation: ADD_NUMBER
+      slot: MAINHAND
+
 dragon_boots:
   material: NETHERITE_BOOTS
   name: "<red>Stivali del Drago d'Ossidiana"

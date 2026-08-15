@@ -1,6 +1,7 @@
 package dev.federicolupoli.mythicgear.command;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -100,7 +101,14 @@ public final class MythicGearCommand implements CommandExecutor, TabCompleter {
             return;
         }
         int given = 0;
-        for (String piece : set.pieces()) {
+        List<String> order = new ArrayList<>(set.pieces());
+        for (String itemId : plugin.getRegistry().ids()) {
+            ItemSpec spec = plugin.getRegistry().get(itemId);
+            if (spec != null && set.id().equals(spec.set()) && !order.contains(itemId)) {
+                order.add(itemId);
+            }
+        }
+        for (String piece : order) {
             ItemStack item = plugin.getRegistry().create(piece);
             if (item == null) {
                 plugin.getLogger().warning("Piece '" + piece + "' of set '" + set.id() + "' missing from items.yml");
@@ -117,8 +125,52 @@ public final class MythicGearCommand implements CommandExecutor, TabCompleter {
     }
 
     private void handleList(CommandSender sender) {
-        sender.sendMessage(MM.deserialize("<gold>Item MythicGear: <white>"
-                + String.join(", ", plugin.getRegistry().ids())));
+        Map<String, List<ItemSpec>> bySet = new LinkedHashMap<>();
+        List<ItemSpec> unset = new ArrayList<>();
+        for (String id : plugin.getRegistry().ids()) {
+            ItemSpec spec = plugin.getRegistry().get(id);
+            if (spec.set() != null) {
+                bySet.computeIfAbsent(spec.set(), k -> new ArrayList<>()).add(spec);
+            } else {
+                unset.add(spec);
+            }
+        }
+        for (Set set : plugin.getSetRegistry().all().values()) {
+            List<ItemSpec> pieces = new ArrayList<>();
+            for (String piece : set.pieces()) {
+                ItemSpec spec = plugin.getRegistry().get(piece);
+                if (spec != null) {
+                    pieces.add(spec);
+                }
+            }
+            List<ItemSpec> leftovers = bySet.remove(set.id());
+            if (leftovers != null) {
+                for (ItemSpec spec : leftovers) {
+                    if (!pieces.contains(spec)) {
+                        pieces.add(spec);
+                    }
+                }
+            }
+            if (pieces.isEmpty()) {
+                continue;
+            }
+            sender.sendMessage(MM.deserialize("<gold>Set <aqua>" + set.name()));
+            for (ItemSpec piece : pieces) {
+                String display = piece.name() != null ? MM.stripTags(piece.name()) : piece.id();
+                sender.sendMessage(MM.deserialize("<gray>• <white>" + display + " <dark_gray>[" + piece.id() + "]"));
+            }
+        }
+        List<ItemSpec> others = new ArrayList<>(unset);
+        for (List<ItemSpec> list : bySet.values()) {
+            others.addAll(list);
+        }
+        if (!others.isEmpty()) {
+            sender.sendMessage(MM.deserialize("<gold>Senza set:"));
+            for (ItemSpec piece : others) {
+                String display = piece.name() != null ? MM.stripTags(piece.name()) : piece.id();
+                sender.sendMessage(MM.deserialize("<gray>• <white>" + display + " <dark_gray>[" + piece.id() + "]"));
+            }
+        }
     }
 
     private void handleReload(CommandSender sender) {

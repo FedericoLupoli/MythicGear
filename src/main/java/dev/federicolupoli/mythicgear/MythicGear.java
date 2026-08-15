@@ -9,6 +9,7 @@ import dev.federicolupoli.mythicgear.effect.EffectManager;
 import dev.federicolupoli.mythicgear.item.GearRegistry;
 import dev.federicolupoli.mythicgear.listener.AntiExploitListener;
 import dev.federicolupoli.mythicgear.listener.CraftListener;
+import dev.federicolupoli.mythicgear.listener.DragonSwordListener;
 import dev.federicolupoli.mythicgear.listener.EquipmentListener;
 import dev.federicolupoli.mythicgear.set.SetRegistry;
 
@@ -34,6 +35,7 @@ public final class MythicGear extends JavaPlugin {
         effectManager.load();
 
         Bukkit.getPluginManager().registerEvents(new EquipmentListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new DragonSwordListener(this), this);
         craftListener = new CraftListener(this);
         craftListener.registerRecipe();
         Bukkit.getPluginManager().registerEvents(craftListener, this);

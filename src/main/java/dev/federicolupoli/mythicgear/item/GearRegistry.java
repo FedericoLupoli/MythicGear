@@ -78,7 +78,8 @@ public final class GearRegistry {
                 double amount = mod.getDouble("amount");
                 AttributeModifier.Operation operation = AttributeModifier.Operation
                         .valueOf(mod.getString("operation", "ADD_NUMBER").toUpperCase());
-                EquipmentSlotGroup slot = EquipmentSlotGroup.getByName(mod.getString("slot", "ANY").toUpperCase());
+                EquipmentSlotGroup slot = EquipmentSlotGroup.getByName(mod.getString("slot", "ANY")
+                        .toUpperCase().replace("_", ""));
                 NamespacedKey modifierKey = new NamespacedKey("mythicgear", id + "_" + key);
                 modifiers.add(new ItemSpec.ItemModifier(attribute,
                         new AttributeModifier(modifierKey, amount, operation, slot)));

@@ -1,5 +1,28 @@
 # Changelog
 
+## Versioning (convenzione)
+
+Formato `X.Y.Z`:
+
+- **X** — major updates;
+- **Y** — incrementato a ogni nuovo **armor set** aggiunto;
+- **Z** — fix e feature minori tra le varie armature.
+
+(Salvo diverse indicazioni specifiche.)
+
+## [1.1.1] - 2026-08-15
+
+### Aggiunto
+
+- **Spada del Drago d'Ossidiana** (`dragon_sword`): danno 12, incantesimi alti, parte del set dragon (`set: dragon`, `piece: sword`). Inclusa in `/mythicgear list` e `/mythicgear giveset dragon`. Ottenibile solo via comando, nessuna ricetta.
+- **Abilità "soffio di drago"**: click destro con la spada lancia una palla di fuoco da drago che a impatto crea una nube di dragon breath (danno istantaneo), con cooldown 2s; il lanciatore non subisce il danno del proprio soffio.
+- **Immunità al dragon breath**: chi indossa un qualsiasi pezzo del set dragon è immune al dragon breath (sia quello della spada sia quello dell'ender dragon).
+
+### Corretto
+
+- **Avvio plugin con slot `MAIN_HAND`**: in Paper 26.2 le costanti `EquipmentSlotGroup` sono `MAINHAND`/`OFFHAND` (senza underscore). Il parsing ora normalizza gli underscore, accettando entrambe le scritture.
+- **Errore particle dragon breath**: in 26.2 `Particle.DRAGON_BREATH` richiede un parametro `Float` (scala), ora passato esplicitamente.
+
 ## [1.1.0] - 2026-08-15
 
 ### Aggiunto
