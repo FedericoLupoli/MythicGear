@@ -37,6 +37,11 @@ public final class CraftListener implements Listener {
         plugin.getLogger().info("Registered recipe " + recipeKey.asString());
     }
 
+    public void unregisterRecipe() {
+        Bukkit.removeRecipe(recipeKey);
+        plugin.getLogger().info("Unregistered recipe " + recipeKey.asString());
+    }
+
     @EventHandler(ignoreCancelled = true)
     public void onPrepare(PrepareItemCraftEvent event) {
         Recipe recipe = event.getRecipe();

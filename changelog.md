@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.0] - 2026-08-15
+
+### Aggiunto
+
+- **Comando `/mythicgear giveset <set> [giocatore]`**: dà tutti i pezzi del set con un solo comando (con tab completion su set e giocatori).
+- **Comando `/mythicgear reload`**: ricarica `items.yml`, `sets.yml` e gli effetti, e ri-registra la ricetta, senza riavviare il server. Agli eventuali giocatori online gli effetti vengono rimossi e riapplicati.
+
+### Corretto
+
+- **Resource pack incompatibile**: il client 26.2 dichiara `pack_format: 88` (`resource_major` nel `version.json` del client jar); il pack usava `91` e risultava "incompatibile". Ora è `88`.
+
 ## [1.0.0] - 2026-08-14
 
 Prima release del plugin MythicGear.

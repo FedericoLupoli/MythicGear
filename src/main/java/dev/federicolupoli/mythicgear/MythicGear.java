@@ -17,6 +17,7 @@ public final class MythicGear extends JavaPlugin {
     private GearRegistry registry;
     private SetRegistry setRegistry;
     private EffectManager effectManager;
+    private CraftListener craftListener;
 
     @Override
     public void onEnable() {
@@ -33,7 +34,7 @@ public final class MythicGear extends JavaPlugin {
         effectManager.load();
 
         Bukkit.getPluginManager().registerEvents(new EquipmentListener(this), this);
-        CraftListener craftListener = new CraftListener(this);
+        craftListener = new CraftListener(this);
         craftListener.registerRecipe();
         Bukkit.getPluginManager().registerEvents(craftListener, this);
         Bukkit.getPluginManager().registerEvents(new AntiExploitListener(this), this);
@@ -66,5 +67,20 @@ public final class MythicGear extends JavaPlugin {
 
     public EffectManager getEffectManager() {
         return effectManager;
+    }
+
+    public void reload() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            effectManager.removeAll(player);
+        }
+        registry.load();
+        setRegistry.load();
+        effectManager.load();
+        craftListener.unregisterRecipe();
+        craftListener.registerRecipe();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            effectManager.refresh(player);
+        }
+        getLogger().info("MythicGear config reloaded.");
     }
 }

@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import dev.federicolupoli.mythicgear.MythicGear;
 import dev.federicolupoli.mythicgear.item.ItemSpec;
+import dev.federicolupoli.mythicgear.set.Set;
 
 public final class MythicGearCommand implements CommandExecutor, TabCompleter {
 
@@ -27,15 +28,37 @@ public final class MythicGearCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(MM.deserialize("<red>Uso: /mythicgear <give|list>"));
+            usage(sender);
             return true;
         }
         switch (args[0].toLowerCase()) {
             case "give" -> handleGive(sender, args);
+            case "giveset" -> handleGiveset(sender, args);
             case "list" -> handleList(sender);
-            default -> sender.sendMessage(MM.deserialize("<red>Uso: /mythicgear <give|list>"));
+            case "reload" -> handleReload(sender);
+            default -> usage(sender);
         }
         return true;
+    }
+
+    private void usage(CommandSender sender) {
+        sender.sendMessage(MM.deserialize("<red>Uso: /mythicgear <give|giveset|list|reload>"));
+    }
+
+    private Player resolveTarget(CommandSender sender, String[] args, int index, String usage) {
+        if (args.length > index) {
+            Player target = Bukkit.getPlayer(args[index]);
+            if (target == null) {
+                sender.sendMessage(MM.deserialize("<red>Giocatore non trovato: <white>" + args[index]));
+                return null;
+            }
+            return target;
+        }
+        if (sender instanceof Player player) {
+            return player;
+        }
+        sender.sendMessage(MM.deserialize("<red>Specifica un giocatore: " + usage));
+        return null;
     }
 
     private void handleGive(CommandSender sender, String[] args) {
@@ -49,20 +72,10 @@ public final class MythicGearCommand implements CommandExecutor, TabCompleter {
                     + String.join(", ", plugin.getRegistry().ids())));
             return;
         }
-        Player target;
-        if (args.length >= 3) {
-            target = Bukkit.getPlayer(args[2]);
-            if (target == null) {
-                sender.sendMessage(MM.deserialize("<red>Giocatore non trovato: <white>" + args[2]));
-                return;
-            }
-        } else if (sender instanceof Player player) {
-            target = player;
-        } else {
-            sender.sendMessage(MM.deserialize("<red>Specifica un giocatore: /mythicgear give <item> <giocatore>"));
+        Player target = resolveTarget(sender, args, 2, "/mythicgear give <item> <giocatore>");
+        if (target == null) {
             return;
         }
-
         ItemStack item = plugin.getRegistry().create(spec.id());
         Map<Integer, ItemStack> leftover = target.getInventory().addItem(item);
         for (ItemStack stack : leftover.values()) {
@@ -71,19 +84,61 @@ public final class MythicGearCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage(MM.deserialize("<green>Dato <white>" + spec.id() + " <green>a <white>" + target.getName()));
     }
 
+    private void handleGiveset(CommandSender sender, String[] args) {
+        if (args.length < 2) {
+            sender.sendMessage(MM.deserialize("<red>Uso: /mythicgear giveset <set> [giocatore]"));
+            return;
+        }
+        Set set = plugin.getSetRegistry().get(args[1].toLowerCase());
+        if (set == null) {
+            sender.sendMessage(MM.deserialize("<red>Set non trovato. Disponibili: <white>"
+                    + String.join(", ", plugin.getSetRegistry().all().keySet())));
+            return;
+        }
+        Player target = resolveTarget(sender, args, 2, "/mythicgear giveset <set> <giocatore>");
+        if (target == null) {
+            return;
+        }
+        int given = 0;
+        for (String piece : set.pieces()) {
+            ItemStack item = plugin.getRegistry().create(piece);
+            if (item == null) {
+                plugin.getLogger().warning("Piece '" + piece + "' of set '" + set.id() + "' missing from items.yml");
+                continue;
+            }
+            Map<Integer, ItemStack> leftover = target.getInventory().addItem(item);
+            for (ItemStack stack : leftover.values()) {
+                target.getWorld().dropItemNaturally(target.getLocation(), stack);
+            }
+            given++;
+        }
+        sender.sendMessage(MM.deserialize("<green>Dato il set <aqua>" + set.name() + " <green>(" + given
+                + " pezzi) a <white>" + target.getName()));
+    }
+
     private void handleList(CommandSender sender) {
         sender.sendMessage(MM.deserialize("<gold>Item MythicGear: <white>"
                 + String.join(", ", plugin.getRegistry().ids())));
+    }
+
+    private void handleReload(CommandSender sender) {
+        plugin.reload();
+        sender.sendMessage(MM.deserialize("<green>MythicGear ricaricato: items, sets, effetti e ricette."));
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> suggestions = new ArrayList<>();
         if (args.length == 1) {
-            suggestions.addAll(List.of("give", "list"));
-        } else if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
-            suggestions.addAll(plugin.getRegistry().ids());
-        } else if (args.length == 3 && args[0].equalsIgnoreCase("give")) {
+            suggestions.addAll(List.of("give", "giveset", "list", "reload"));
+        } else if (args.length == 2) {
+            if (args[0].equalsIgnoreCase("give")) {
+                suggestions.addAll(plugin.getRegistry().ids());
+            } else if (args[0].equalsIgnoreCase("giveset")) {
+                suggestions.addAll(plugin.getSetRegistry().all().keySet());
+            }
+        } else if (args.length == 3
+                && (args[0].equalsIgnoreCase("give") || args[0].equalsIgnoreCase("giveset"))) {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 suggestions.add(player.getName());
             }
