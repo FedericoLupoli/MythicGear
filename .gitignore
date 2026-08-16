@@ -6,3 +6,6 @@ out/
 ObsidianDragon-RP.zip
 .deployrc
 AGENTS.md
+
+__pycache__/
+*.pyc
