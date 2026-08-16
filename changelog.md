@@ -10,6 +10,16 @@ Formato `X.Y.Z`:
 
 (Salvo diverse indicazioni specifiche.)
 
+## [1.1.2] - 2026-08-16
+
+### Aggiunto
+
+- **Texture custom del set Drago d'Ossidiana** (resource pack): reskin netherite in stile ender/viola per tutti e 4 i pezzi. Modelli equipment `mythicgear:dragon` (elmo/gambiere/stivali) e `mythicgear:dragon_chestplate` (con ali elytra). Texture generate da `resourcepack/tools/make_armor.py`.
+- **Texture custom degli item dell'armatura in inventario/mano**: reskin dei 4 pezzi anche come oggetto (prima erano netherite vanilla in inventario, custom solo indosso). Generate da `resourcepack/tools/make_armor_items.py`.
+- **Texture custom della spada** (`dragon_sword`): stessa palette ender/viola degli altri pezzi. Generata da `resourcepack/tools/make_sword.py`.
+- **Opzione `item_model` in `items.yml`**: applica una definizione item custom (`assets/<ns>/items/<id>.json`) a un item via componente `minecraft:item_model`, senza override dei file vanilla. Usata per la spada.
+- **Opzione `no_glint: true` in `items.yml`**: rimuove il glint degli incantesimi dagli item custom (via `ItemMeta#setEnchantmentGlintOverride`). Applicata a tutto il set dragon.
+
 ## [1.1.1] - 2026-08-15
 
 ### Aggiunto

@@ -48,6 +48,14 @@ public final class ItemFactory {
 
         item.setItemMeta(meta);
 
+        if (spec.noGlint()) {
+            item.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, false);
+        }
+
+        if (spec.itemModel() != null) {
+            item.setData(DataComponentTypes.ITEM_MODEL, spec.itemModel());
+        }
+
         if (spec.equippable() != null) {
             ItemSpec.EquippableSpec equippable = spec.equippable();
             Equippable.Builder builder = Equippable.equippable(equippable.slot());

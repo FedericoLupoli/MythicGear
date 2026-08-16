@@ -17,6 +17,8 @@ public record ItemSpec(
         String set,
         String piece,
         boolean glider,
+        boolean noGlint,
+        NamespacedKey itemModel,
         Map<Enchantment, Integer> enchants,
         List<ItemModifier> modifiers,
         EquippableSpec equippable) {

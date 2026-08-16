@@ -94,6 +94,10 @@ public final class GearRegistry {
                 section.getString("set"),
                 section.getString("piece"),
                 section.getBoolean("glider", false),
+                section.getBoolean("no_glint", false),
+                section.getString("item_model", null) != null
+                        ? NamespacedKey.fromString(section.getString("item_model"))
+                        : null,
                 enchants,
                 modifiers,
                 parseEquippable(section.getConfigurationSection("equippable")));

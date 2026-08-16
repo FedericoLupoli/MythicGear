@@ -7,6 +7,12 @@ dragon_helmet:
   set: dragon
   piece: helmet
   glider: false
+  no_glint: true
+  item_model: mythicgear:dragon_helmet
+  equippable:
+    slot: HEAD
+    model: mythicgear:dragon
+    sound: minecraft:item.armor.equip_netherite
   enchants:
     protection: 10
     unbreaking: 5
@@ -35,6 +41,8 @@ dragon_chestplate:
   set: dragon
   piece: chestplate
   glider: true
+  no_glint: true
+  item_model: mythicgear:dragon_chestplate
   equippable:
     slot: CHEST
     model: mythicgear:dragon_chestplate
@@ -65,6 +73,12 @@ dragon_leggings:
   set: dragon
   piece: leggings
   glider: false
+  no_glint: true
+  item_model: mythicgear:dragon_leggings
+  equippable:
+    slot: LEGS
+    model: mythicgear:dragon
+    sound: minecraft:item.armor.equip_netherite
   enchants:
     protection: 10
     unbreaking: 5
@@ -91,6 +105,8 @@ dragon_sword:
   set: dragon
   piece: sword
   glider: false
+  no_glint: true
+  item_model: mythicgear:dragon_sword
   enchants:
     sharpness: 10
     fire_aspect: 2
@@ -111,6 +127,12 @@ dragon_boots:
   set: dragon
   piece: boots
   glider: false
+  no_glint: true
+  item_model: mythicgear:dragon_boots
+  equippable:
+    slot: FEET
+    model: mythicgear:dragon
+    sound: minecraft:item.armor.equip_netherite
   enchants:
     protection: 10
     unbreaking: 5
