@@ -1,5 +1,5 @@
 name: MythicGear
-version: 1.2.0
+version: 1.2.1
 main: dev.federicolupoli.mythicgear.MythicGear
 description: Custom armor and weapons for a semi-vanilla experience
 author: federico
@@ -13,4 +13,7 @@ commands:
 permissions:
   mythicgear.admin:
     description: Manage MythicGear items
+    default: op
+  mythicgear.alert:
+    description: Receive notifications about MythicGear updates
     default: op

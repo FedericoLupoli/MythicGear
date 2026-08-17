@@ -3,6 +3,9 @@ package dev.federicolupoli.mythicgear;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import dev.federicolupoli.mythicgear.command.MythicGearCommand;
 import dev.federicolupoli.mythicgear.effect.EffectManager;
@@ -23,6 +26,7 @@ public final class MythicGear extends JavaPlugin {
     private SetRegistry setRegistry;
     private EffectManager effectManager;
     private CraftListener craftListener;
+    private UpdateChecker updateChecker;
 
     @Override
     public void onEnable() {
@@ -48,6 +52,14 @@ public final class MythicGear extends JavaPlugin {
         craftListener.registerRecipe();
         Bukkit.getPluginManager().registerEvents(craftListener, this);
         Bukkit.getPluginManager().registerEvents(new AntiExploitListener(this), this);
+
+        updateChecker = new UpdateChecker(this);
+        Bukkit.getPluginManager().registerEvents(new Listener() {
+            @EventHandler
+            public void onJoin(PlayerJoinEvent event) {
+                updateChecker.check(event.getPlayer());
+            }
+        }, this);
 
         MythicGearCommand command = new MythicGearCommand(this);
         PluginCommand pluginCommand = getCommand("mythicgear");

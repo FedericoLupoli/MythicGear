@@ -20,6 +20,12 @@ Formato `X.Y.Z`:
 - **Opzione `item_model` in `items.yml`**: applica una definizione item custom (`assets/<ns>/items/<id>.json`) a un item via componente `minecraft:item_model`, senza override dei file vanilla. Usata per la spada e per tutti i pezzi dell'armatura.
 - **Opzione `no_glint: true` in `items.yml`**: rimuove il glint degli incantesimi dagli item custom (via `ItemMeta#setEnchantmentGlintOverride`). Applicata a tutto il set dragon.
 
+## [1.2.1] - 2026-08-17
+
+### Aggiunto
+
+- **Update checker**: al join, controlla GitHub per nuove versioni e notifica i giocatori con permesso `mythicgear.alert`. Confronto numerico versioni (solo se remota > locale).
+
 ## [1.2.0] - 2026-08-17
 
 ### Aggiunto

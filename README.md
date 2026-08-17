@@ -27,6 +27,7 @@
 - **Crafting recipes** for the armor pieces.
 - **Anti-exploit** — MythicGear items cannot be renamed or repaired in anvils/grindstones.
 - **Built-in resource pack** — custom equipment models, automatically served by the server.
+- **Update checker** — players with `mythicgear.alert` permission are notified on join when a newer version is available on GitHub.
 
 ## Requirements
 
@@ -61,6 +62,11 @@ Set `require-resource-pack=true` to force the pack, or have players install the 
 | `/mythicgear reload` | Reload items, sets, effects and recipes |
 
 Alias: `/mg`. All commands require the `mythicgear.admin` permission (default: OP).
+
+| Permission | Description |
+|---|---|
+| `mythicgear.admin` | Access to all `/mythicgear` commands (default: OP) |
+| `mythicgear.alert` | Receive update notifications on join (default: OP) |
 
 ## Configuration
 
