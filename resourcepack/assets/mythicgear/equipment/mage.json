@@ -1,0 +1,29 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "mythicgear:mage"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "mythicgear:mage"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "mythicgear:mage"
+      }
+    ],
+    "horse_body": [
+      {
+        "texture": "minecraft:netherite"
+      }
+    ],
+    "nautilus_body": [
+      {
+        "texture": "minecraft:netherite"
+      }
+    ]
+  }
+}

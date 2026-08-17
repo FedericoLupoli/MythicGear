@@ -155,3 +155,195 @@ dragon_boots:
       amount: 0.05
       operation: ADD_SCALAR
       slot: FEET
+
+mage_helmet:
+  material: NETHERITE_HELMET
+  name: "<blue>Elmo del Mago"
+  lore:
+    - "<gray>Set <blue>Mago"
+    - "<gray>Full set: <aqua>sblocca le staffe"
+  set: mage
+  piece: helmet
+  glider: false
+  no_glint: true
+  item_model: mythicgear:mage_helmet
+  equippable:
+    slot: HEAD
+    model: mythicgear:mage
+    sound: minecraft:item.armor.equip_netherite
+  enchants:
+    protection: 4
+    unbreaking: 5
+    respiration: 3
+    aqua_affinity: 1
+  attributes:
+    armor:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: HEAD
+    armor_toughness:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: HEAD
+    knockback_resistance:
+      amount: 0.1
+      operation: ADD_NUMBER
+      slot: HEAD
+
+mage_chestplate:
+  material: NETHERITE_CHESTPLATE
+  name: "<blue>Pettorale del Mago"
+  lore:
+    - "<gray>Set <blue>Mago"
+    - "<gray>Full set: <aqua>sblocca le staffe"
+  set: mage
+  piece: chestplate
+  glider: false
+  no_glint: true
+  item_model: mythicgear:mage_chestplate
+  equippable:
+    slot: CHEST
+    model: mythicgear:mage
+    sound: minecraft:item.armor.equip_netherite
+  enchants:
+    protection: 4
+    unbreaking: 5
+  attributes:
+    armor:
+      amount: 8
+      operation: ADD_NUMBER
+      slot: CHEST
+    armor_toughness:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: CHEST
+    knockback_resistance:
+      amount: 0.1
+      operation: ADD_NUMBER
+      slot: CHEST
+
+mage_leggings:
+  material: NETHERITE_LEGGINGS
+  name: "<blue>Gambiere del Mago"
+  lore:
+    - "<gray>Set <blue>Mago"
+    - "<gray>Full set: <aqua>sblocca le staffe"
+  set: mage
+  piece: leggings
+  glider: false
+  no_glint: true
+  item_model: mythicgear:mage_leggings
+  equippable:
+    slot: LEGS
+    model: mythicgear:mage
+    sound: minecraft:item.armor.equip_netherite
+  enchants:
+    protection: 4
+    unbreaking: 5
+  attributes:
+    armor:
+      amount: 6
+      operation: ADD_NUMBER
+      slot: LEGS
+    armor_toughness:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: LEGS
+    knockback_resistance:
+      amount: 0.1
+      operation: ADD_NUMBER
+      slot: LEGS
+
+mage_boots:
+  material: NETHERITE_BOOTS
+  name: "<blue>Stivali del Mago"
+  lore:
+    - "<gray>Set <blue>Mago"
+    - "<gray>Full set: <aqua>sblocca le staffe"
+  set: mage
+  piece: boots
+  glider: false
+  no_glint: true
+  item_model: mythicgear:mage_boots
+  equippable:
+    slot: FEET
+    model: mythicgear:mage
+    sound: minecraft:item.armor.equip_netherite
+  enchants:
+    protection: 4
+    unbreaking: 5
+    feather_falling: 4
+    depth_strider: 3
+  attributes:
+    armor:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: FEET
+    armor_toughness:
+      amount: 3
+      operation: ADD_NUMBER
+      slot: FEET
+    knockback_resistance:
+      amount: 0.1
+      operation: ADD_NUMBER
+      slot: FEET
+    movement_speed:
+      amount: 0.05
+      operation: ADD_SCALAR
+      slot: FEET
+
+fire_staff:
+  material: BOW
+  name: "<gold>Staffa del Fuoco"
+  lore:
+    - "<gray>Set <blue>Mago"
+    - "<gray>Click destro: <gold>tira una palla di fuoco"
+  set: mage
+  piece: weapon
+  glider: false
+  no_glint: true
+  item_model: mythicgear:fire_staff
+  enchants:
+    unbreaking: 5
+
+lightning_staff:
+  material: BOW
+  name: "<yellow>Staffa dei Fulmini"
+  lore:
+    - "<gray>Set <blue>Mago"
+    - "<gray>Click destro: <yellow>scaglia un fulmine"
+  set: mage
+  piece: weapon
+  glider: false
+  no_glint: true
+  item_model: mythicgear:lightning_staff
+  enchants:
+    unbreaking: 5
+
+healing_staff:
+  material: BOW
+  name: "<green>Staffa della Guarigione"
+  lore:
+    - "<gray>Set <blue>Mago"
+    - "<gray>Click destro: <green>guarigione"
+  set: mage
+  piece: weapon
+  glider: false
+  no_glint: true
+  item_model: mythicgear:healing_staff
+  enchants:
+    unbreaking: 5
+
+flight_staff:
+  material: BOW
+  name: "<aqua>Staffa del Volo"
+  lore:
+    - "<gray>Set <blue>Mago"
+    - "<gray>Click destro: <aqua>attiva/disattiva il volo"
+  set: mage
+  piece: weapon
+  glider: false
+  no_glint: true
+  item_model: mythicgear:flight_staff
+  enchants:
+    unbreaking: 5

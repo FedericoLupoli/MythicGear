@@ -17,8 +17,21 @@ Formato `X.Y.Z`:
 - **Texture custom del set Drago d'Ossidiana** (resource pack): reskin netherite in stile ender/viola per tutti e 4 i pezzi. Modelli equipment `mythicgear:dragon` (elmo/gambiere/stivali) e `mythicgear:dragon_chestplate` (con ali elytra). Texture generate da `resourcepack/tools/make_armor.py`.
 - **Texture custom degli item dell'armatura in inventario/mano**: reskin dei 4 pezzi anche come oggetto (prima erano netherite vanilla in inventario, custom solo indosso). Generate da `resourcepack/tools/make_armor_items.py`.
 - **Texture custom della spada** (`dragon_sword`): stessa palette ender/viola degli altri pezzi. Generata da `resourcepack/tools/make_sword.py`.
-- **Opzione `item_model` in `items.yml`**: applica una definizione item custom (`assets/<ns>/items/<id>.json`) a un item via componente `minecraft:item_model`, senza override dei file vanilla. Usata per la spada.
+- **Opzione `item_model` in `items.yml`**: applica una definizione item custom (`assets/<ns>/items/<id>.json`) a un item via componente `minecraft:item_model`, senza override dei file vanilla. Usata per la spada e per tutti i pezzi dell'armatura.
 - **Opzione `no_glint: true` in `items.yml`**: rimuove il glint degli incantesimi dagli item custom (via `ItemMeta#setEnchantmentGlintOverride`). Applicata a tutto il set dragon.
+
+## [1.2.0] - 2026-08-17
+
+### Aggiunto
+
+- **Set "Mago"** completo di 4 pezzi: elmo, pettorale, gambiere e stivali (netherite con Protection 4). Texture equipment custom stile accappatoio scuro con apertura trasparente sul petto, bordi e cintura dorati, generate da `resourcepack/tools/make_mage.py`.
+- **4 Staffe magiche** (richiedono set Mago completo, materiale BOW, click destro in aria):
+  - **Staffa del Fuoco** (`fire_staff`): raffica di 5 SmallFireball con spread. Cooldown 2s.
+  - **Staffa dei Fulmini** (`lightning_staff`): fulmine istantaneo sul blocco puntato (range 50). Cooldown 3s.
+  - **Staffa della Guarigione** (`healing_staff`): Rigeneration II (5s) + Absorption (10s). Cooldown 3s.
+  - **Staffa del Volo** (`flight_staff`): toggle volo creativo. Cooldown 1s. Revocato alla disconnessione senza OP.
+- Definizioni item, modelli e texture per tutti i nuovi pezzi nel resource pack.
+- Texture staffe stile bastone medievale magico (legno nodoso, cuff metalliche, cristallo luminoso in cima).
 
 ## [1.1.1] - 2026-08-15
 

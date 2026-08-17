@@ -11,6 +11,10 @@ import dev.federicolupoli.mythicgear.listener.AntiExploitListener;
 import dev.federicolupoli.mythicgear.listener.CraftListener;
 import dev.federicolupoli.mythicgear.listener.DragonSwordListener;
 import dev.federicolupoli.mythicgear.listener.EquipmentListener;
+import dev.federicolupoli.mythicgear.listener.FireStaffListener;
+import dev.federicolupoli.mythicgear.listener.LightningStaffListener;
+import dev.federicolupoli.mythicgear.listener.HealingStaffListener;
+import dev.federicolupoli.mythicgear.listener.FlightStaffListener;
 import dev.federicolupoli.mythicgear.set.SetRegistry;
 
 public final class MythicGear extends JavaPlugin {
@@ -36,6 +40,10 @@ public final class MythicGear extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new EquipmentListener(this), this);
         Bukkit.getPluginManager().registerEvents(new DragonSwordListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new FireStaffListener(), this);
+        Bukkit.getPluginManager().registerEvents(new LightningStaffListener(), this);
+        Bukkit.getPluginManager().registerEvents(new HealingStaffListener(), this);
+        Bukkit.getPluginManager().registerEvents(new FlightStaffListener(), this);
         craftListener = new CraftListener(this);
         craftListener.registerRecipe();
         Bukkit.getPluginManager().registerEvents(craftListener, this);

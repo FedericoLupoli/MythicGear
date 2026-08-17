@@ -6,15 +6,27 @@
 
 ## Features
 
-- **Obsidian Dragon set** — 4 netherite armor pieces plus the Obsidian Dragon Sword, each with custom stats, enchantments and lore.
+### Obsidian Dragon set
+- **4 netherite armor pieces** plus the Obsidian Dragon Sword, each with custom stats, enchantments and lore.
 - **Armor + elytra hybrid** — the chestplate doubles as an elytra (glider) and renders *both* the netherite armor and the wings, thanks to a custom equipment model.
 - **Full-set bonus** — wearing the complete armor set grants **+20 max health** (double life).
 - **Dragon Breath ability** — right-click the Obsidian Dragon Sword to launch a dragon fireball that leaves a lingering cloud of dragon breath on impact.
 - **Dragon Breath immunity** — players wearing any piece of the set are immune to dragon breath, both from the sword and from the Ender Dragon.
+
+### Mage set
+- **4 netherite armor pieces** (Protection 4) styled as a dark open-front bathrobe with gold trim.
+- **4 magical staffs** (BOW material, right-click in air, require full Mage set):
+  - **Fire Staff** — shoots a burst of 5 fire projectiles with spread.
+  - **Lightning Staff** — strikes lightning at the targeted block (range 50).
+  - **Healing Staff** — grants Regeneration II (5s) + Absorption (10s).
+  - **Flight Staff** — toggles creative flight (revoked on disconnect without OP).
+- Staffs are designed as medieval magical wooden staffs with glowing crystal orbs.
+
+### General
 - **Explicit per-piece attributes** — armor, armor toughness, knockback resistance and movement speed, fully declared in `items.yml`.
 - **Crafting recipes** for the armor pieces.
 - **Anti-exploit** — MythicGear items cannot be renamed or repaired in anvils/grindstones.
-- **Built-in resource pack** — custom equipment model, automatically served by the server.
+- **Built-in resource pack** — custom equipment models, automatically served by the server.
 
 ## Requirements
 
@@ -78,6 +90,17 @@ dragon_sword:
       operation: ADD_NUMBER
       slot: MAINHAND
 
+fire_staff:
+  material: BOW
+  name: "<gold>Staffa del Fuoco"
+  lore:
+    - "<gray>Set <dark_purple>Mago"
+    - "<gray>Click destro: <red>raffica di fuoco"
+  set: mage
+  piece: staff
+  item_model: mythicgear:fire_staff
+  no_glint: true
+
 # sets.yml
 dragon:
   name: "Drago d'Ossidiana"
@@ -87,6 +110,15 @@ dragon:
     - dragon_leggings
     - dragon_boots
   max_health_bonus: 20
+
+mage:
+  name: "Mago"
+  pieces:
+    - mage_helmet
+    - mage_chestplate
+    - mage_leggings
+    - mage_boots
+  max_health_bonus: 0
 ```
 
 > **Note for Paper 26.2:** attribute modifiers added through the API *replace* the material's default modifiers. Always declare the base stats (`armor`, `armor_toughness`, `knockback_resistance`) explicitly for every piece.

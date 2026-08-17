@@ -6,3 +6,12 @@ dragon:
     - dragon_leggings
     - dragon_boots
   max_health_bonus: 20
+
+mage:
+  name: "Mago"
+  pieces:
+    - mage_helmet
+    - mage_chestplate
+    - mage_leggings
+    - mage_boots
+  max_health_bonus: 0
